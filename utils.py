@@ -12,6 +12,9 @@ from sklearn.metrics import confusion_matrix, matthews_corrcoef
 #get colors
 import color as color
 class Utils:
+    #takes in a (test) dataframe and returns a dataframe with the same columns but with:
+    # 1. All columns that are not in the feature set removed
+    # 2. Extraneous columns  and bad terms emoved
     def feature_subset(df, subset, other_bad_terms = [], noBSA=False):
         X = df.copy()
         X = X.fillna(0)
