@@ -269,7 +269,7 @@ class Utils:
     ## number of iterations to improve reproducability
     def evaluate_model_with_Tsite(clf, feature_set, Tsites_scaled, save_models=False, num_rand_seeds=10):
         ## prepare test-set
-        testX = Tsites_scaled.copy();
+        testX = Tsites_scaled.copy()
         testY = testX['Catalytic']; del testX['Catalytic']
         testX = Utils.feature_subset(testX, feature_set, noBSA=True)
 
@@ -277,7 +277,7 @@ class Utils:
         test_site_preds = {'actual': pd.Series(testY, index=testX.index)}
         for rand_seed in range(0,num_rand_seeds):
             # get undersampled training data for feature set
-            X, y = Utils.get_training_data(feature_set, rand_seed)
+            X, y = Utils.get_training_data(feature_set = feature_set, random_seed=rand_seed, data_scaled=Tsites_scaled)
             print("random_seed = %s"%(rand_seed), end="\t")
             print("(num. training sites= %s (%s+ : %s-) \tnum. features: %s)"%(X.shape[0], len(y[y==True]),len(y[y==False]), X.shape[1]))
 
