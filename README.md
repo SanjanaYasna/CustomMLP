@@ -33,6 +33,10 @@ This was sourced from the MAHOMES repository outlined above. Run the notebook to
 
 A set of MLP trials for different kinds of basic MLP models, and towards the end, a performance comparison between the keras MLP and the scikit learn MAHOMES MLP
 
+## Keras.py
+
+Contains the final Keras custom MLP structure, and a function for evaluating it
+
 # Running this project
 
 You can run `MAHOMES.ipynb` to see how the model performs under that given dataset.
