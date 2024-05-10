@@ -62,8 +62,11 @@ The results fpor each outer loop (of 7) were:
 There was no absolute concensus, but the most optimal parameters were `{'alpha': 0.001, 'hidden_layer_sizes': (100,)}`
 
 The resultins of that input:
-	Accuracy	MCC	    Recall	TrueNegRate	Precision
-	92.05	    0.83	93.57	91.3	    84.21
+Accuracy        92.05
+MCC             0.83
+Recall	        93.57
+TrueNegRate	    91.3
+Precision       84.21
 
 Then, I experimented with different pytorch MLP models in `MLP_tials.ipynb` I performed the same data wrangling and loaded the train and test data onto pytorch tensors. I tried a few different models with around 2 to 3 hidden layers and different actiation functions. However, I ran into an error of struggling to get the models to converge to a binary classification of 0 or 1, for false/true. Therefore, I went for the temporary evaluation of the different approaches by rmse and r2 scores.
 All of thesee prototypes use pytorch's Adam optimizer for gradient descent and an L1 loss function.
@@ -123,12 +126,18 @@ Scikit Learn MAHOMES MLP confusion matrix:
 
 Table for keras MLP evaluation:
 
-Accuracy	MCC	        Recall	TrueNegRate	Precision
-98.643411	0.970145	100.0	97.971014	96.067416
+Accuracy        98.643411
+MCC             0.970145
+Recall	        100.0
+TrueNegRate	    97.971014
+Precision      96.067416
 
 Whereas for MAHOMES MLP (computed from MAHOMES.ipynb, as displayed above as well):
-Accuracy	MCC	    Recall	TrueNegRate	Precision
-92.05	    0.83	93.57	91.3	    84.21
+Accuracy        92.05
+MCC             0.83
+Recall	        93.57
+TrueNegRate	    91.3
+Precision       84.21
 
 Overall, it seems that the scikit learn MLP did better in voiding false positives and true negatives (it had no false negatives!) However, the keras MLP was more precise and had a higher true negative rate, plus a better MCC (Matthews Correlation Coefficient) score.
 Future testing can be done between the two MLPs, and I'll be sure ot look into other algorithms for determining the ideal hyperparameters of custom models.
