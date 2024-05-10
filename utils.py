@@ -321,3 +321,14 @@ class Utils:
         Prec=(TP/(TP+FP))*100
         return(pd.DataFrame([[alg, feat_set, acc, mcc, TPR, TNR, Prec]],
             columns=['Algorithm', 'Feature Set', 'Accuracy', 'MCC', 'Recall', 'TrueNegRate', 'Precision']))
+    #keras version of the above:
+    def check_result_metrics_for_keras(alg, feat_set, prediction_df):
+        mcc = matthews_corrcoef(prediction_df['actual'], prediction_df['bool_pred'])
+        TN, FP, FN, TP = confusion_matrix(prediction_df['actual'], prediction_df['bool_pred']).ravel()
+
+        TPR=(TP/(TP+FN))*100
+        TNR=(TN/(TN+FP))*100
+        acc=((TP+TN)/(TP+TN+FP+FN))*100
+        Prec=(TP/(TP+FP))*100
+        return(pd.DataFrame([[alg, feat_set, acc, mcc, TPR, TNR, Prec]],
+            columns=['Algorithm', 'Feature Set', 'Accuracy', 'MCC', 'Recall', 'TrueNegRate', 'Precision']))
