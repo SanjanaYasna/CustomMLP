@@ -50,13 +50,13 @@ I ran the GridSearchCV on the MAHOMES MLP classifier for the given parameter com
 These combos were evaluated by their precision and accuracy measures. There are 9 combos, and each has had 7 folds in their model training and evaluation.
 
 The results fpor each outer loop (of 7) were: 
-# 0,0.001,"(100,)"
-# 1,0.01,"(50,)"
-# 2,0.001,"(200,)"
-# 3,0.001,"(100,)"
-# 4,0.001,"(200,)"
-# 5,0.001,"(100,)"
-# 6,0.001,"(100,)" 
+0,0.001,"(100,)"
+1,0.01,"(50,)"
+2,0.001,"(200,)"
+3,0.001,"(100,)"
+4,0.001,"(200,)"
+5,0.001,"(100,)"
+6,0.001,"(100,)" 
 
 
 There was no absolute concensus, but the most optimal parameters were `{'alpha': 0.001, 'hidden_layer_sizes': (100,)}`
@@ -69,12 +69,13 @@ Then, I experimented with different pytorch MLP models in `MLP_tials.ipynb` I pe
 All of thesee prototypes use pytorch's Adam optimizer for gradient descent and an L1 loss function.
 
 Results of the basic prototypes:
+
 ### theiaMLP: 
 
 2 hidden layer, uses tanh activation functions.
 
-# Mean Squared Error: 0.11795077403554882
-# R2 Score: 0.46766500127569677
+Mean Squared Error: 0.11795077403554882
+R2 Score: 0.46766500127569677
 
 Loss through epochs
 ![Alt text](image.png)
@@ -82,8 +83,8 @@ Loss through epochs
 ### MLP (just a generic one)
 
 2 hidden layers, RELU acivation, but sigmoid activation at end for final output
-# Mean Squared Error: 0.09783460591148274
-# R2 Score: 0.5584532171244132
+Mean Squared Error: 0.09783460591148274
+ R2 Score: 0.5584532171244132
 
 Loss through epochs
 ![Alt text](image-1.png)
@@ -92,8 +93,8 @@ Loss through epochs
 
 sigmoid and relu activation functions, 2 hidden layers, batch normalization
 
-# Mean Squared Error: 0.09421305668796993
-# R2 Score: 0.5747979797344294 
+Mean Squared Error: 0.09421305668796993
+R2 Score: 0.5747979797344294 
 
 It has by far the most unstable loss:
 ![Alt text](image-2.png)
@@ -101,12 +102,36 @@ It has by far the most unstable loss:
 Ultimately, the structure of my model titled just MLP did relatively teh best. All 3 prototypes had very usntable loss functions, but MLP had the lowest mse and its R2 score was relatively close to 0.50, which is optimal (sice it's beetween 0 and 1)
 
 For reference, MAHOMES MLP had the following:
-# Mean Squared Error: 0.10207024977596316
-# R2 Score: 0.5393369248437435
+Mean Squared Error: 0.10207024977596316
+R2 Score: 0.5393369248437435
 
 So, later in the MLP_trials notebook, I created a KerasClassifer model that uses a similar structure as my MLP model (2 hidden layers, 2 relu functions, sigmoid at the end)
-It's loss function stabilized very well, and it was the closest to convergence (we're talking about values like 2e-12)
+It's loss function stabilized very well, and it was the closest to convergence (we're talking about values like 2e-12) I normalized the outputs to get 0s and 1s.
 Loss function diagram: ![Alt text](image-3.png)
+
+### Keras MLP performance comparison
+
+Both the Keras classifier MLP and the scikit learn classifier MLP were trained over 100 epochs. 
+I evaluted them by confusion matrix scores and overall accuracy
+
+Keras confusion matrix:
+![Alt text](image-4.png)
+
+Scikit Learn MAHOMES MLP confusion matrix:
+![Alt text](image-5.png)
+
+
+Table for keras MLP evaluation:
+
+Accuracy	MCC	        Recall	TrueNegRate	Precision
+98.643411	0.970145	100.0	97.971014	96.067416
+
+Whereas for MAHOMES MLP (computed from MAHOMES.ipynb, as displayed above as well):
+Accuracy	MCC	    Recall	TrueNegRate	Precision
+92.05	    0.83	93.57	91.3	    84.21
+
+Overall, it seems that the scikit learn MLP did better in voiding false positives and true negatives (it had no false negatives!) However, the keras MLP was more precise and had a higher true negative rate, plus a better MCC (Matthews Correlation Coefficient) score.
+Future testing can be done between the two MLPs, and I'll be sure ot look into other algorithms for determining the ideal hyperparameters of custom models.
 
 # Credits
 
