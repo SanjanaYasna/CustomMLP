@@ -1,6 +1,6 @@
 # Description
 
-[MAHOMES](https://github.com/SluskyLab/MAHOMES) is a project done by the SLUSKY lab in the University of Kansas to distinguish between active and inactive metal-binding sites of proteins. The methodology is a variety of machine learning algorithms/tools that can be used individually, but haven't been designed in tandem. Overall, the models performed relatively well to other previous approaches, with 92.2% precision and 901% recall. One of their algorithms, MLP (Multilayer Perceptron), uses scikit-learn’s Multilayer Perceptron library. However, it happened to do relatively worse in MCC (Matthews Correlation Coefficient) and precision measures compared to other methods, but by 1 to 2 percent (no major gap in performance). Scikit-learn’s MLP is often used as a very surface-level MLP that doesn’t have many customization options, but has the advantage of near guaranteeing convergence, in this case, outputs of 0 and 1s for this binary classification. 
+[MAHOMES](https://github.com/SluskyLab/MAHOMES) is a project done by the SLUSKY lab in the University of Kansas to distinguish between active and inactive metal-binding sites of proteins. The methodology is a variety of machine learning algorithms/tools that can be used individually, but haven't been designed in tandem. Overall, the models performed relatively well to other previous approaches, with 92.2% precision and 90.1% recall. One of their algorithms, MLP (Multilayer Perceptron), uses scikit-learn’s Multilayer Perceptron library. However, it happened to do relatively worse in MCC (Matthews Correlation Coefficient) and precision measures compared to other methods, but by 1 to 2 percent (no major gap in performance). Scikit-learn’s MLP is often used as a very surface-level MLP that doesn’t have many customization options, but has the advantage of near guaranteeing convergence, in this case, outputs of 0 and 1s for this binary classification. 
 This project involves a lot of trial and error with using Pytorch and Tensorflow MLP model builders. The goal is to design a custom MLP that can be directly edited to adjust hidden layer features and activation functions, allowing more customization than scikit learn. In addition, while the model may not perform as well as scikit learn, it will achieve a decent accuracy and true negative rate in relation to MAHOMES scikit learn MLP, and there is plenty opportunitiy to further customize the model to improve the accuracy. The evaluation of the new custom MLP in comparison to MAHOMES MLP was done by tensorflow's confusion matrix and the Matthews Correlation Coefficient, among a few other evaluated parameters.
 
 
@@ -54,23 +54,23 @@ I ran the GridSearchCV on the MAHOMES MLP classifier for the given parameter com
 These combos were evaluated by their precision and accuracy measures. There are 9 combos, and each has had 7 folds in their model training and evaluation.
 
 The results fpor each outer loop (of 7) were: 
-0,0.001,"(100,)"
-1,0.01,"(50,)"
-2,0.001,"(200,)"
-3,0.001,"(100,)"
-4,0.001,"(200,)"
-5,0.001,"(100,)"
-6,0.001,"(100,)" 
+0,0.001,"(100,)" <br />
+1,0.01,"(50,)"<br />
+2,0.001,"(200,)" <br />
+3,0.001,"(100,)"<br />
+4,0.001,"(200,)"<br />
+5,0.001,"(100,)"<br />
+6,0.001,"(100,)"  <br />
 
 
 There was no absolute concensus, but the most optimal parameters were `{'alpha': 0.001, 'hidden_layer_sizes': (100,)}`
 
 The resultins of that input:
-Accuracy        92.05
-MCC             0.83
-Recall	        93.57
-TrueNegRate	    91.3
-Precision       84.21
+Accuracy        92.05<br />
+MCC             0.83<br />
+Recall	        93.57<br />
+TrueNegRate	    91.3<br />
+Precision       84.21<br />
 
 Then, I experimented with different pytorch MLP models in `MLP_tials.ipynb` I performed the same data wrangling and loaded the train and test data onto pytorch tensors. I tried a few different models with around 2 to 3 hidden layers and different actiation functions. However, I ran into an error of struggling to get the models to converge to a binary classification of 0 or 1, for false/true. Therefore, I went for the temporary evaluation of the different approaches by rmse and r2 scores.
 All of thesee prototypes use pytorch's Adam optimizer for gradient descent and an L1 loss function.
@@ -79,9 +79,9 @@ Results of the basic prototypes:
 
 ### theiaMLP: 
 
-2 hidden layer, uses tanh activation functions.
+2 hidden layer, uses tanh activation functions.<br />
 
-Mean Squared Error: 0.11795077403554882
+Mean Squared Error: 0.11795077403554882<br />
 R2 Score: 0.46766500127569677
 
 Loss through epochs
@@ -89,8 +89,8 @@ Loss through epochs
 
 ### MLP (just a generic one)
 
-2 hidden layers, RELU acivation, but sigmoid activation at end for final output
-Mean Squared Error: 0.09783460591148274
+2 hidden layers, RELU acivation, but sigmoid activation at end for final output<br />
+Mean Squared Error: 0.09783460591148274<br />
  R2 Score: 0.5584532171244132
 
 Loss through epochs
@@ -98,9 +98,9 @@ Loss through epochs
 
 ### ChurnModel (since it uses dropout)
 
-sigmoid and relu activation functions, 2 hidden layers, batch normalization
+sigmoid and relu activation functions, 2 hidden layers, batch normalization<br />
 
-Mean Squared Error: 0.09421305668796993
+Mean Squared Error: 0.09421305668796993<br />
 R2 Score: 0.5747979797344294 
 
 It has by far the most unstable loss:
@@ -108,8 +108,8 @@ It has by far the most unstable loss:
 
 Ultimately, the structure of my model titled just MLP did relatively teh best. All 3 prototypes had very usntable loss functions, but MLP had the lowest mse and its R2 score was relatively close to 0.50, which is optimal (sice it's beetween 0 and 1)
 
-For reference, MAHOMES MLP had the following:
-Mean Squared Error: 0.10207024977596316
+For reference, MAHOMES MLP had the following:<br />
+Mean Squared Error: 0.10207024977596316<br />
 R2 Score: 0.5393369248437435
 
 So, later in the MLP_trials notebook, I created a KerasClassifer model that uses a similar structure as my MLP model (2 hidden layers, 2 relu functions, sigmoid at the end)
@@ -121,27 +121,27 @@ Loss function diagram: ![Alt text](image-3.png)
 Both the Keras classifier MLP and the scikit learn classifier MLP were trained over 100 epochs. 
 I evaluted them by confusion matrix scores and overall accuracy
 
-Keras confusion matrix:
+Keras confusion matrix:<br />
 ![Alt text](image-4.png)
 
-Scikit Learn MAHOMES MLP confusion matrix:
+Scikit Learn MAHOMES MLP confusion matrix:<br />
 ![Alt text](image-5.png)
 
 
 Table for keras MLP evaluation:
 
-Accuracy        98.643411
-MCC             0.970145
-Recall	        100.0
-TrueNegRate	    97.971014
-Precision      96.067416
+Accuracy        98.643411<br />
+MCC             0.970145<br />
+Recall	        100.0<br />
+TrueNegRate	    97.971014<br />
+Precision      96.067416<br />
 
 Whereas for MAHOMES MLP (computed from MAHOMES.ipynb, as displayed above as well):
-Accuracy        92.05
-MCC             0.83
-Recall	        93.57
-TrueNegRate	    91.3
-Precision       84.21
+Accuracy        92.05<br />
+MCC             0.83<br />
+Recall	        93.57<br />
+TrueNegRate	    91.3<br />
+Precision       84.21<br />
 
 Overall, it seems that the scikit learn MLP did better in voiding false positives and true negatives (it had no false negatives!) However, the keras MLP was more precise and had a higher true negative rate, plus a better MCC (Matthews Correlation Coefficient) score.
 Future testing can be done between the two MLPs, and I'll be sure ot look into other algorithms for determining the ideal hyperparameters of custom models.
