@@ -106,7 +106,7 @@ R2 Score: 0.5747979797344294
 It has by far the most unstable loss:
 ![Alt text](image-2.png)
 
-Ultimately, the structure of my model titled just MLP did relatively teh best. All 3 prototypes had very usntable loss functions, but MLP had the lowest mse and its R2 score was relatively close to 0.50, which is optimal (sice it's beetween 0 and 1)
+Ultimately, the structure of my model titled just MLP did relatively the best. All 3 prototypes had very unstable loss functions, but MLP had the lowest mse and its R2 score was relatively close to 0.50, which is optimal (since model predictions are only supposed to be 0 and 1, so 0.5 is an ideal that is right between the binary outputs)
 
 For reference, MAHOMES MLP had the following:<br />
 Mean Squared Error: 0.10207024977596316<br />
@@ -143,8 +143,8 @@ Recall	        93.57<br />
 TrueNegRate	    91.3<br />
 Precision       84.21<br />
 
-Overall, it seems that the scikit learn MLP did better in voiding false positives and true negatives (it had no false negatives!) However, the keras MLP was more precise and had a higher true negative rate, plus a better MCC (Matthews Correlation Coefficient) score.
-Future testing can be done between the two MLPs, and I'll be sure ot look into other algorithms for determining the ideal hyperparameters of custom models.
+Overall, it seems that the scikit learn MLP did better in avoiding false positives and true negatives (it had no false negatives!) However, the keras MLP was more accurate and had a higher true negative rate, plus a better MCC (Matthews Correlation Coefficient) score.
+Future testing can be done between the two MLPs, and I'll be sure to look into other algorithms for determining the ideal hyperparameters of custom models.
 
 # Credits
 
