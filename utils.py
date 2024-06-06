@@ -182,7 +182,7 @@ class Utils:
     
     def get_scaled_features(sites, pkl_out, save_models = None):
         #change to pkl_out folder directory
-        if pkl_out is not None:
+        if pkl_out is not None or pkl_out is not False:
             os.chdir(pkl_out)
         # seperate the sets (only dataset will be used to set scaling)
         data = sites.loc[sites.Set == "data"].copy()

@@ -10,11 +10,11 @@ import setuptools.dist
 #other crap
 import tensorflow as tf
 from kerastuner.tuners import RandomSearch
-import keras_tuner
 import keras
 from keras import layers
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
+
 class KerasMLP:
     #model initialization
     def init_model(init_features):
