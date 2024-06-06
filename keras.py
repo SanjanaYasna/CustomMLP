@@ -1,4 +1,5 @@
 from scikeras.wrappers import KerasClassifier
+from sklearn.metrics import confusion_matrix, matthews_corrcoef
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import StratifiedKFold
@@ -16,7 +17,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 class KerasMLP:
     #model initialization
-    def init_model():
+    def init_model(init_features):
         inputs = keras.Input(shape=(init_features,), name = "inputs")
         #first relu
         actv1 = keras.layers.Dense(init_features, activation="relu")(inputs)
